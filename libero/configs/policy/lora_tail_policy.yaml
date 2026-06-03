@@ -1,0 +1,30 @@
+policy_type: LoRATailPolicy 
+
+
+extra_num_layers: 0
+extra_hidden_size: 128
+embed_size: 512  # 你现在报错就是缺这个
+transformer_num_layers: 6
+transformer_num_heads: 8
+transformer_head_output_size: 64
+transformer_mlp_hidden_size: 256
+transformer_dropout: 0.15
+transformer_max_seq_len: 8
+film_hidden_size: 512       # ✅ 你缺的字段
+num_tasks: 10
+max_seq_len: 8
+num_gmm_modes: 5  # 或者根据你实际用的 GMM 头部设置一个合理值
+
+
+
+
+defaults:
+    - data_augmentation@color_aug: batch_wise_img_color_jitter_group_aug_tail.yaml
+    - data_augmentation@translation_aug: affine_aug.yaml
+    - data_augmentation@erase_aug: erase_aug.yaml
+    - image_encoder: clip_vision_encoder.yaml
+    - language_encoder: clip_text_encoder.yaml
+    - position_encoding@temporal_position_encoding: sinusoidal_position_encoding.yaml
+    - policy_head: time_gmm_head.yaml
+rank: 8                       # LoRA 降维 r (论文里用 r<<E)
+alpha: 8                      # 缩放系数 α（常设为和 r 同量级）

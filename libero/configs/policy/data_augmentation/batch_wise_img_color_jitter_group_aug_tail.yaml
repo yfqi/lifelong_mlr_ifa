@@ -1,0 +1,9 @@
+_target_: BatchWiseImgColorJitterAug
+
+network: BatchWiseImgColorJitterAug
+prob: 0.9
+network_kwargs:
+  brightness: 0.3
+  contrast: 0.3
+  saturation: 0.3
+  hue: 0.3

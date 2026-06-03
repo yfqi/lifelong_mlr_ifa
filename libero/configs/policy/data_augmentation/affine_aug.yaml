@@ -1,0 +1,7 @@
+_target_: RandomAffineAug
+
+network: RandomAffineAug
+prob: 0.6
+network_kwargs:
+  degrees: 15
+  translate: 0.1  # 等价于 translate=(0.1, 0.1)

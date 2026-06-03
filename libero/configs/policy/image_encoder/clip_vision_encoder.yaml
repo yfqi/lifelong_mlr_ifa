@@ -1,0 +1,5 @@
+network: "CLIPVisionEncoder"
+network_kwargs:
+  vision_model_name: "openai/clip-vit-base-patch16"
+  output_size: 64        # 对应 `embed_size: 64`
+  input_shape: null      # 运行时由 shape_meta 填充

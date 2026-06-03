@@ -1,0 +1,4 @@
+network: "CLIPTextEncoder"
+network_kwargs:
+  text_model_name: "openai/clip-vit-base-patch16"
+  output_size: 64       # 同 embed_size

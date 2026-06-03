@@ -1,0 +1,27 @@
+# @package _global_
+defaults:
+  - _self_
+  - data: default
+  - policy: complete_policy
+  - train: default
+  - eval: default
+  - lifelong: basic
+  - test: null
+hydra:
+  run:
+    dir: .  
+seed: 42
+use_wandb: false
+wandb_project: "lifelong learning"
+bddl_folder: null # use default path
+init_states_folder: null # use default path
+load_previous_model: false
+device: "cuda"
+task_embedding_format: "clip"
+task_embedding_one_hot_offset: 1
+pretrain: false
+pretrain_model_path: 
+benchmark_name: "LIBERO_10"
+training: false
+folder: null # use default path
+

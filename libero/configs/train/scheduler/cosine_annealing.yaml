@@ -1,0 +1,6 @@
+
+name: torch.optim.lr_scheduler.LambdaLR
+# 这里不再需要 T_max 了
+kwargs:
+    warmup_steps: 500
+    last_epoch: -1

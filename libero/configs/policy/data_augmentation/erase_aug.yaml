@@ -1,0 +1,7 @@
+_target_: RandomErasingAug
+
+network: RandomErasingAug
+prob: 0.1
+network_kwargs:
+  scale: [0.02, 0.33]
+  ratio: [0.3, 3.3]

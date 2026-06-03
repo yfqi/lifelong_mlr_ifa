@@ -1,0 +1,33 @@
+policy_type: CompletePolicy
+
+
+extra_num_layers: 0
+extra_hidden_size: 128
+embed_size: 512
+transformer_num_layers: 6
+transformer_num_heads: 8
+transformer_head_output_size: 64
+transformer_mlp_hidden_size: 256
+transformer_dropout: 0.15
+transformer_max_seq_len: 8
+film_hidden_size: 512
+num_tasks: 10
+max_seq_len: 8
+num_gmm_modes: 5
+
+use_vision: True
+use_language: True
+use_state: False
+
+
+
+defaults:
+    - data_augmentation@color_aug: batch_wise_img_color_jitter_group_aug_tail.yaml
+    - data_augmentation@translation_aug: affine_aug.yaml
+    - data_augmentation@erase_aug: erase_aug.yaml
+    - image_encoder: clip_vision_encoder.yaml
+    - language_encoder: clip_text_encoder.yaml
+    - position_encoding@temporal_position_encoding: sinusoidal_position_encoding.yaml
+    - policy_head: time_gmm_head.yaml
+rank: 8
+alpha: 8
