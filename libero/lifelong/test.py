@@ -2,12 +2,9 @@ import os
 
 import multiprocessing as mp
 os.environ["MUJOCO_GL"] = "egl"
-# 处理 CUDA_VISIBLE_DEVICES 重映射：对进程而言可见列表的第0张就是 "0"
 os.environ["MUJOCO_EGL_DEVICE_ID"] = os.getenv("CUDA_VISIBLE_DEVICES", "0").split(",")[0]
-# 一些服务器上需要无 surface EGL
 os.environ["EGL_PLATFORM"] = "surfaceless"
-# 关键：避免 fork 带来的 GL 状态问题
-mp.set_start_method("spawn", force=True)   # <- 关键：在任何 torch/robosuite 导入之前import torch.nn.functional as F
+mp.set_start_method("spawn", force=True)  
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 import sys
@@ -57,7 +54,6 @@ os.environ["MUJOCO_EGL_DEVICE_ID"] = os.getenv("CUDA_VISIBLE_DEVICES","0").split
 os.environ["EGL_PLATFORM"] = "surfaceless"
 sys.path.insert(0, "/home/fyu/mlr_ifa")
 
-# —— Python hash 种子 —— 
 # os.environ["PYTHONHASHSEED"] = "0"
 def set_global_seed(seed:int):
     import random
@@ -69,11 +65,10 @@ def set_global_seed(seed:int):
 
 from pathlib import Path
 def log_succ(S, i, j, pp, logfile="/home/ct_005.txt"):
-    # 只让 rank0 写文件（DDP 时避免多进程同时写）
     if dist.is_available() and dist.is_initialized() and dist.get_rank() != 0:
         return
     line = f"[task {i} epoch {j:02d} and {pp} succ.] " + " | ".join(f"{x:.2f}" for x in S)
-    print(line)  # 仍然打印到控制台
+
     Path(logfile).parent.mkdir(parents=True, exist_ok=True)
     with open(logfile, "a", encoding="utf-8") as f:
         f.write(line + "\n")

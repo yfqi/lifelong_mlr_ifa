@@ -9,10 +9,10 @@ export PYTHONPATH=/home/fyu/mlr_ifa:$PYTHONPATH
 
 $PYTHON libero/lifelong/test.py \
     seed=42 \
-    benchmark_name=LIBERO_OBJECT \
+    benchmark_name=LIBERO_GOAL \
     policy=complete_policy \
     lifelong=basic \
-    pretrain=/home/fyu/mlr_ifa/object_multitask_model_ep99.pth  \
+    pretrain=/home/fyu/mlr_ifa/goal_multitask_model_ep96.pth  \
     +start_task=6 \
     +end_task=10 \
     +aug=True \

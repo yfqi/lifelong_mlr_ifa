@@ -1,4 +1,11 @@
 # LIL-MLR-IFA
+
+[![arXiv](https://img.shields.io/badge/arXiv-2603.10929-b31b1b.svg)](https://arxiv.org/abs/2603.10929)
+
+<p align="center">
+  <img src="assets/main.png" width="85%">
+</p>
+
 Official implementation of the paper  "Lifelong Imitation Learning with Multimodal Latent Replay and Incremental Adjustment"
 
 Accepted at **CVPR 2026**.
